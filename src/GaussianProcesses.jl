@@ -45,7 +45,7 @@ mutable struct GP_Regressor
 		Kequiv = Kcross * Kinv  # equivalent smoothing kernel weights (each row)
 
 		mean_posterior = Kequiv * y_train
-		cov_posterior = Kpred .- Kcross * Kinv * Kcross'
+		cov_posterior = Kpred .- Kequiv * Kcross'
 
 		posterior = MvNormal(mean_posterior, Matrix(Hermitian(cov_posterior)))
 
