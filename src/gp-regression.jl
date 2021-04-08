@@ -31,3 +31,18 @@ plot(myGP.x_grid, sqrt.(diag(cov(myGP.posterior))))
 
 # plot equivalent kernel weights of train data
 plot(myGP.x_train, myGP.equiv_weights[10,:])
+
+
+# multidimensional example
+
+using DataFrames
+
+dt = DataFrame(
+	x1=[-5,-5,-5,0,0,0,5,5,5],
+	x2=[-5,0,5,-5,0,5,-5,0,5]
+);
+
+f(x1,x2) = -x1^2 - x2^2
+
+dt[!, :y] .= f.(dt.x1, dt.x2);
+dt
